@@ -39,7 +39,7 @@ function upload($y)
 {
     $y = $y + 1;
     for ($x = 1; $x < $y; $x++) {
-        $id = "pi$x";
+        $id = "img$x";
         input($id, "Image $x", null, "file", true);
     }
 }

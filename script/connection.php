@@ -17,7 +17,7 @@ function db_connect($dbname, $sql)
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    //extract($_POST);
+    extract($_POST);
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";
     } else {
@@ -26,20 +26,34 @@ function db_connect($dbname, $sql)
 
     $conn->close();
 }
-// function insert_db($conn)
-// {
-//     extract($_POST);
-//     $sql = "INSERT INTO db_enquiry (id,name,email,phone,from_date,to_date,note,package)
-// VALUES ('1','" . $name . "','" . $email . "','" . $phone . "',' " . $from . "','" . $to . "','" . $message . "','package')";
-//     if ($conn->query($sql) === TRUE) {
-//         echo "New record created successfully";
-//     } else {
-//         echo "Error: " . $sql . "<br>" . $conn->error;
-//     }
-//     $conn->close();
-// }
+function insert_db()
+{
+    extract($_POST);
+    $image1 = $_FILES["img1"]["tmp_name"];
+    $en_img1 = img_encode($image1);
+    $image2 = $_FILES["img2"]["tmp_name"];
+    $en_img2 = img_encode($image2);
+    $image3 = $_FILES["img3"]["tmp_name"];
+    $en_img3 = img_encode($image3);
+    // echo $en_img3;
+    // $en_img1 = "kk";
+    // $en_img2 = "kk";
+    // $en_img3 = "kk";
+    $sql = "INSERT INTO product VALUES ('" . $pid . "','" . $title . "','" . $des . "','" . $en_img1 . "','" . $en_img2 . "','" . $en_img3 . "','" . $price . "')";
+    db_connect("kohtet", $sql);
+}
 function db_create($dbname)
 {
     $quarry_text = "CREATE Database $dbname";
     db_connect(null, $quarry_text);
+}
+
+function img_encode($image)
+{
+    $data = fopen($image, 'rb');
+    $size = filesize($image);
+    $contents = fread($data, $size);
+    fclose($data);
+    $encoded = base64_encode($contents);
+    return $encoded;
 }
