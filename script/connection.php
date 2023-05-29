@@ -17,7 +17,7 @@ function db_connect($dbname, $sql, $type)
     if ($type == 0) {
         // insert to db
         if ($conn->query($sql) === TRUE) {
-            header("Location: ../add.php?msg=true");
+            header("Location: ../list.php?msg=true");
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }

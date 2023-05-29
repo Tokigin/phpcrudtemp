@@ -29,7 +29,7 @@
                 <a class="nav-link" aria-current="page" href="products.php">Products</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="add.php">Add Product</a>
+                <a class="nav-link" aria-current="page" href="list.php">Admin</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="#">About us</a>
