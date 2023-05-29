@@ -1,14 +1,11 @@
 <?php
-
-function db_connect($dbname, $sql)
+function db_connect($dbname, $sql, $type)
 {
     $servername = "localhost";
     $username = "root";
     $password = "";
-    // $dbname = "mmtravel";
     // Create connection
     if ($dbname == null) {
-
         $conn = new mysqli($servername, $username, $password);
     } else {
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -17,11 +14,17 @@ function db_connect($dbname, $sql)
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    extract($_POST);
-    if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+    if ($type == 0) {
+        // insert to db
+        if ($conn->query($sql) === TRUE) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        //select from db
+        $result = $conn->query($sql);
+        return $result;
     }
 
     $conn->close();
@@ -35,19 +38,20 @@ function insert_db()
     $en_img2 = img_encode($image2);
     $image3 = $_FILES["img3"]["tmp_name"];
     $en_img3 = img_encode($image3);
-    // echo $en_img3;
-    // $en_img1 = "kk";
-    // $en_img2 = "kk";
-    // $en_img3 = "kk";
     $sql = "INSERT INTO product VALUES ('" . $pid . "','" . $title . "','" . $des . "','" . $en_img1 . "','" . $en_img2 . "','" . $en_img3 . "','" . $price . "')";
-    db_connect("kohtet", $sql);
+    db_connect("kohtet", $sql, 0);
 }
 function db_create($dbname)
 {
     $quarry_text = "CREATE Database $dbname";
-    db_connect(null, $quarry_text);
+    db_connect(null, $quarry_text, 0);
 }
 
+function db_get()
+{
+    $sql = "Select * from product";
+    return db_connect("kohtet", $sql, 1);
+}
 function img_encode($image)
 {
     $data = fopen($image, 'rb');

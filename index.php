@@ -1,4 +1,4 @@
-<?php 
+<?php
 include "view/header.php";
 include "view/hero.php";
 include "script/script.php";
@@ -9,7 +9,7 @@ include "script/script.php";
 </div>
 <div class="row row-cols-1 row-cols-md-3 g-5 p-5">
     <?php
-    cards(3, " Products");
+    cards(3);
     ?>
 </div>
 <div class="mx-auto p-2" style="width: 200px;">

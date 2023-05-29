@@ -1,15 +1,20 @@
 <?php
-function cards($y, $ptitle)
+include "connection.php";
+function cards($y)
 {
-    $y = $y + 1;
-    for ($x = 1; $x < $y; $x++) {
-        $id = "p$x";
-        $title = "$ptitle $x";
-        $text = "loran loranloranloranloranloranloran$x";
-        $img1 = "img/banner1.jpg";
-        $img2 = "img/banner2.jpg";
-        $img3 = "img/banner3.jpg";
-        include "view/scard.php";
+    $products_data = db_get();
+    $x = 0;
+    while ($row = $products_data->fetch_assoc()) {
+        if ($x < $y) {
+            $id = $row["productid"];
+            $title = $row["productname"];
+            $text = $row["description"];
+            $img1 = "img/banner1.jpg";
+            $img2 = "img/banner2.jpg";
+            $img3 = "img/banner3.jpg";
+            include "view/scard.php";
+            $x++;
+        }
     }
 }
 
@@ -42,4 +47,14 @@ function upload($y)
         $id = "img$x";
         input($id, "Image $x", null, "file", true);
     }
+}
+
+function img_decode($image)
+{
+    $data = fopen($image, 'rb');
+    $size = filesize($image);
+    $contents = fread($data, $size);
+    fclose($data);
+    $encoded = base64_encode($contents);
+    return $encoded;
 }
