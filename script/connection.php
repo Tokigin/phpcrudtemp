@@ -48,7 +48,7 @@ function db_create($dbname)
 
 function db_get()
 {
-    $sql = "Select * from product";
+    $sql = "Select * from product ";
     return db_connect("kohtet", $sql, 1);
 }
 function img_encode($image)

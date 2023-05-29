@@ -10,6 +10,10 @@ include "script/script.php";
         $msg = "New record created successfully";
         include "view/alert.php";
     }
+    // $check = isset($_GET['msg']);
+    // $msg = $check ? "New record created successfully" : "Error creating record";
+    // $check ? include "view/alert.php" : "";
+
     input("pid", "Product ID", "col-md-6", null);
     input("title", "Product Name", "col-md-6", null);
     input("des", "Description", null, null);

@@ -49,3 +49,8 @@ function upload($y)
         input($id, "Image $x", null, "file", true);
     }
 }
+function table()
+{
+    $products_data = db_get();
+    include "view/table.php";
+}
