@@ -34,6 +34,7 @@ function insert_db()
     extract($_POST);
     $image1 = $_FILES["img1"]["tmp_name"];
     $en_img1 = img_encode($image1);
+    echo $en_img1;
     $image2 = $_FILES["img2"]["tmp_name"];
     $en_img2 = img_encode($image2);
     $image3 = $_FILES["img3"]["tmp_name"];

@@ -9,9 +9,9 @@ function cards($y)
             $id = $row["productid"];
             $title = $row["productname"];
             $text = $row["description"];
-            $img1 = "img/banner1.jpg";
-            $img2 = "img/banner2.jpg";
-            $img3 = "img/banner3.jpg";
+            $img1 = $row["image1"];
+            $img2 = $row["image2"];
+            $img3 = $row["image3"];
             include "view/scard.php";
             $x++;
         }
@@ -51,10 +51,6 @@ function upload($y)
 
 function img_decode($image)
 {
-    $data = fopen($image, 'rb');
-    $size = filesize($image);
-    $contents = fread($data, $size);
-    fclose($data);
-    $encoded = base64_encode($contents);
-    return $encoded;
+    $decoded = base64_decode($image);
+    return $decoded;
 }
