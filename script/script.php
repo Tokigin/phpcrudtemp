@@ -12,6 +12,7 @@ function cards($y)
             $img1 = $row["image1"];
             $img2 = $row["image2"];
             $img3 = $row["image3"];
+            $price = $row["price"];
             include "view/scard.php";
             $x++;
         }
@@ -47,10 +48,4 @@ function upload($y)
         $id = "img$x";
         input($id, "Image $x", null, "file", true);
     }
-}
-
-function img_decode($image)
-{
-    $decoded = base64_decode($image);
-    return $decoded;
 }

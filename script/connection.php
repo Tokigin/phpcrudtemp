@@ -17,7 +17,7 @@ function db_connect($dbname, $sql, $type)
     if ($type == 0) {
         // insert to db
         if ($conn->query($sql) === TRUE) {
-            echo "New record created successfully";
+            header("Location: ../add.php?msg=true");
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
@@ -26,7 +26,6 @@ function db_connect($dbname, $sql, $type)
         $result = $conn->query($sql);
         return $result;
     }
-
     $conn->close();
 }
 function insert_db()
@@ -34,7 +33,6 @@ function insert_db()
     extract($_POST);
     $image1 = $_FILES["img1"]["tmp_name"];
     $en_img1 = img_encode($image1);
-    echo $en_img1;
     $image2 = $_FILES["img2"]["tmp_name"];
     $en_img2 = img_encode($image2);
     $image3 = $_FILES["img3"]["tmp_name"];

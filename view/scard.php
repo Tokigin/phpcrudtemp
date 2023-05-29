@@ -8,7 +8,7 @@
       </p>
     </div>
     <div class="card-footer">
-      <small class="text-body-secondary">Last updated 3 mins ago</small>
+      <small class="text-body-secondary">Price : <?php echo $price; ?></small>
     </div>
   </div>
 </div>
