@@ -17,6 +17,6 @@
     input("des", "Description", null, null);
     upload(3);
     input("price", "Price", null, null);
-    button("Add Database", null, "btn btn-dark");
+    button("Add to Database", null, "btn btn-dark");
     ?>
 </form>
