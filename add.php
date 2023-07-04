@@ -7,12 +7,10 @@
 <form class="row g-3 mx-auto" style="width: 500px;" method="post" action="script/config.php" enctype="multipart/form-data">
     <?php
     if (isset($_GET['msg'])) {
-        $msg = "New record created successfully";
+        $check = $_GET['msg'];
+        $msg = $check == "true" ? 'New record created successfully' : 'Error creating new record';
         include "view/alert.php";
     }
-    // $check = isset($_GET['msg']);
-    // $msg = $check ? "New record created successfully" : "Error creating record";
-    // $check ? include "view/alert.php" : "";
 
     input("pid", "Product ID", "col-md-6", null);
     input("title", "Product Name", "col-md-6", null);

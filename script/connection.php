@@ -19,7 +19,7 @@ function db_connect($dbname, $sql, $type)
         if ($conn->query($sql) === TRUE) {
             header("Location: ../list.php?msg=true");
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            header("Location: ../list.php?msg=flase");
         }
     } else {
         //select from db
